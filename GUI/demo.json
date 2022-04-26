@@ -1,0 +1,75 @@
+{
+    "Employees": [
+        {
+            "id": 208916437,
+            "gender": "\u05d6",
+            "last_name": "\u05d1\u05df \u05d3\u05d5\u05d3",
+            "age": 25,
+            "phone_number": "0545798744",
+            "first_name": "\u05e9\u05de\u05d5\u05d0\u05dc",
+            "speciality": "\u05de\u05d5\u05e8\u05d4 \u05dc\u05de\u05ea\u05de\u05d8\u05d9\u05e7\u05d4",
+            "experience": 0,
+            "salary": 0.0,
+            "days": ""
+        }
+    ],
+    "Students": [
+        {
+            "id": 56435132365,
+            "gender": "\u05d6",
+            "last_name": "\u05db\u05d4\u05df",
+            "age": 28,
+            "phone_number": "05845643432",
+            "first_name": "\u05d9\u05d5\u05e1\u05d9",
+            "grade": "\u05d7",
+            "classes": []
+        },
+        {
+            "id": 2213160,
+            "gender": "\u05d6",
+            "last_name": "\u05d7\u05d9\u05d9\u05dd",
+            "age": 2,
+            "phone_number": "0565465464",
+            "first_name": "\u05e1\u05d9\u05e0\u05d9",
+            "grade": "\u05d0",
+            "classes": []
+        }
+    ],
+    "EVENTS": [
+        {
+            "event name": "\u05de\u05e1\u05d9\u05d1\u05ea \u05e4\u05d5\u05e8\u05d9\u05dd",
+            "year": 2022,
+            "month": 3,
+            "day": 15,
+            "participants": [
+                {
+                    "first name": "\u05d9\u05d5\u05e1\u05d9",
+                    "last name": "\u05db\u05d4\u05df",
+                    "arrival_confirmation": "\u05d0\u05d9\u05e9\u05e8 \u05d4\u05d2\u05e2\u05d4"
+                },
+                {
+                    "first name": "\u05e1\u05d9\u05e0\u05d9",
+                    "last name": "\u05d7\u05d9\u05d9\u05dd",
+                    "arrival_confirmation": "\u05dc\u05d0 \u05d0\u05d9\u05e9\u05e8 \u05d4\u05d2\u05e2\u05d4"
+                }
+            ],
+            "employee": [],
+            "comment": "",
+            "equipment_list": "\u05e8\u05de\u05e7\u05d5\u05dc\u05d9\u05dd"
+        }
+    ],
+    "LINK": [
+        [
+            "C:/Users/shmuel/Downloads/Instructions for Oral Presentations - Mit A-B.docx",
+            "Instructions for Oral Presentations - Mit A-B.docx"
+        ],
+        [
+            "C:/Users/shmuel/Downloads/\u05ea\u05e8\u05d2\u05d9\u05dc \u05e9\u05e0\u05d9/\u05ea\u05e8\u05d2\u05d9\u05dc \u05e9\u05e0\u05d9.docx",
+            "\u05ea\u05e8\u05d2\u05d9\u05dc \u05e9\u05e0\u05d9.docx"
+        ],
+        [
+            "C:/Users/shmuel/Desktop/\u200f\u200f\u05ea\u05d9\u05e7\u05d9\u05d4 \u05d7\u05d3\u05e9\u05d4 (2)/\u200f\u200f\u05de\u05e1\u05de\u05da \u05e9\u05dc Microsoft Word \u05d7\u05d3\u05e9.docx",
+            "\u200f\u200f\u05de\u05e1\u05de\u05da \u05e9\u05dc Microsoft Word \u05d7\u05d3\u05e9.docx"
+        ]
+    ]
+}
