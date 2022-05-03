@@ -14,6 +14,7 @@ class GUIEditEmployee(QDialog):
     def initUI(self):
         self.setWindowTitle(self.title)
         self.resize(251, 296)
+
         self.formLayout = QFormLayout()
 
         self.label = QLabel()

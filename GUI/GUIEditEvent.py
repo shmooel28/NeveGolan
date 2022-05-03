@@ -23,6 +23,8 @@ class GUIEditEvent(QWidget):
         pixmap = QPixmap('background.jpg')
         label.setPixmap(pixmap)
         self.resize(pixmap.width(), pixmap.height())
+        self.setFixedSize(self.width, self.height)
+
 
         button1 = QPushButton('חזרה', self)
         button1.setGeometry(40, 40, 200, 200)
