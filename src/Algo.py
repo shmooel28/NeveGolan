@@ -203,19 +203,31 @@ class Algo:
             worksheet.write_string(row, col+2, student.phone_number)
             row+=1
         workbook.close()
-    ''' for student in student_list.values():
-            if "שם פרטי" in out_list:
-                out_list["שם פרטי"].append(student.first_name)
+
+    def up_grade(self):
+        for s in self.main_system.students.values():
+            if s.grade == 'א':
+                s.grade ='ב'
+            elif s.grade == 'ב':
+                s.grade = 'ג'
+            elif s.grade == 'ג':
+                s.grade = 'ד'
+            elif s.grade == 'ד':
+                s.grade = 'ה'
+            elif s.grade == 'ה':
+                s.grade = 'ו'
+            elif s.grade == 'ו':
+                s.grade = 'ז'
+            elif s.grade == 'ז':
+                s.grade = 'ח'
+            elif s.grade == 'ח':
+                s.grade = 'ט'
+            elif s.grade == 'ט':
+                s.grade = 'י'
+            elif s.grade == 'י':
+                s.grade = 'יא'
+            elif s.grade == 'יא' or s.grade =='י"א':
+                s.grade = 'יב'
             else:
-                out_list["שם פרטי"] = student.first_name
-            if "שם משפחה" in out_list:
-                out_list["שם משפחה"].append(student.last_name)
-            else:
-                out_list["שם משפחה"] = student.last_name
-            if "מספר פלאפון" in out_list:
-                out_list["מספר פלאפון"].append(student.phone_number)
-            else:
-                out_list["מספר פלאפון"] = student.phone_number
-        #df = pandas.DataFrame(out_list)'''
-        #df.to_excel(filename_out)
+                s.grade = 'בוגרים'
 

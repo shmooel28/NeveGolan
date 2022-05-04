@@ -3,6 +3,8 @@ from PyQt5.QtGui import QPixmap
 from PyQt5.QtWidgets import QWidget, QLabel, QPushButton, QDialog, QCheckBox, QInputDialog, QVBoxLayout, \
     QDialogButtonBox, QTextEdit, QLineEdit, QTableWidget, QScrollBar, QTableWidgetItem, QRadioButton
 
+from GUIFilterStudent import GUIFilterStudent
+
 
 class GUIEditEvent(QWidget):
     def __init__(self, algo, event_name):
@@ -66,6 +68,14 @@ class GUIEditEvent(QWidget):
             u"background-color:rgb(255, 243, 231);\ncolor:black;\nborder-style:outset;\nborder-width:2px"
             u";\nborder-radius:10;\nborder-color:black;")
 
+        button6 = QPushButton('מחיקת אירוע', self)
+        button6.setGeometry(40, 40, 200, 200)
+        button6.move(500, 370)
+        button6.clicked.connect(self.delete_event)
+        button6.setStyleSheet(
+            u"background-color:rgb(255, 243, 231);\ncolor:black;\nborder-style:outset;\nborder-width:2px"
+            u";\nborder-radius:10;\nborder-color:black;")
+
     @pyqtSlot()
     def back(self):
         self.close()
@@ -76,6 +86,10 @@ class GUIEditEvent(QWidget):
         self.checkBox1.setText("איש צוות")
         self.checkBox2 = QCheckBox()
         self.checkBox2.setText("חניך")
+        self.checkBox4 = QCheckBox()
+        self.checkBox4.setText("כל אנשי הצוות")
+        self.checkBox5 = QCheckBox()
+        self.checkBox5.setText("קבוצת חניכים")
         self.buttonBox = QDialogButtonBox()
         self.buttonBox.setOrientation(Qt.Horizontal)
         self.buttonBox.setStandardButtons(QDialogButtonBox.Cancel | QDialogButtonBox.Ok)
@@ -84,6 +98,8 @@ class GUIEditEvent(QWidget):
         self.layout = QVBoxLayout()
         self.layout.addWidget(self.checkBox1)
         self.layout.addWidget(self.checkBox2)
+        self.layout.addWidget(self.checkBox4)
+        self.layout.addWidget(self.checkBox5)
         self.layout.addWidget(self.buttonBox)
         self.wind = QDialog()
         self.wind.setGeometry(70, 70, 200, 200)
@@ -108,6 +124,14 @@ class GUIEditEvent(QWidget):
                 temp_student = self.algo.find_student(first_name, last_name)
                 if temp_student:
                     self.algo.main_system.EVENT[self.event_name].add_participants(temp_student)
+        elif self.checkBox4.isChecked():
+            for employee in self.algo.main_system.employees.values():
+                if employee not in self.algo.main_system.EVENT[self.event_name].employee:
+                    self.algo.main_system.EVENT[self.event_name].add_employee(employee)
+        elif self.checkBox5.isChecked():
+            self.new_window = GUIFilterStudent(self.algo,self.event_name)
+            self.new_window.show()
+
 
         self.wind.close()
 
@@ -254,3 +278,29 @@ class GUIEditEvent(QWidget):
     @pyqtSlot()
     def back(self):
         self.close()
+
+    @pyqtSlot()
+    def delete_event(self):
+        self.msg = QDialog()
+        buttonBox = QDialogButtonBox()
+        buttonBox.setOrientation(Qt.Horizontal)
+        buttonBox.setStandardButtons(QDialogButtonBox.Cancel | QDialogButtonBox.Ok)
+        buttonBox.accepted.connect(self.delete)
+        buttonBox.rejected.connect(self.close_dialog)
+        label = QLabel()
+        label.setText("האם אתה בטוח שאתה רוצה למחוק?")
+        layout = QVBoxLayout()
+        layout.addWidget(label)
+        layout.addWidget(buttonBox)
+        self.msg.setLayout(layout)
+        x = self.msg.exec_()
+
+    @pyqtSlot()
+    def delete(self):
+        self.algo.main_system.EVENT.pop(self.event_name)
+        self.msg.close()
+        self.close()
+
+    @pyqtSlot()
+    def close_dialog(self):
+        self.msg.close()

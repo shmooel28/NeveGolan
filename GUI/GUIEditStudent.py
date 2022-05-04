@@ -1,5 +1,5 @@
 from PyQt5.QtCore import Qt, pyqtSlot
-from PyQt5.QtWidgets import QDialog, QFormLayout, QLineEdit, QLabel, QDialogButtonBox
+from PyQt5.QtWidgets import QDialog, QFormLayout, QLineEdit, QLabel, QDialogButtonBox, QVBoxLayout, QPushButton
 
 
 class GUIEditStudent(QDialog):
@@ -97,7 +97,12 @@ class GUIEditStudent(QDialog):
         self.buttonBox.setOrientation(Qt.Horizontal)
         self.buttonBox.setStandardButtons(QDialogButtonBox.Cancel | QDialogButtonBox.Ok)
 
+        button = QPushButton('מחק חניך', self)
+        button.setGeometry(20, 20, 50, 50)
+        button.clicked.connect(self.delete_employee)
+
         self.formLayout.setWidget(8,QFormLayout.LabelRole,self.buttonBox)
+        self.formLayout.setWidget(8, QFormLayout.FieldRole, button)
         self.setLayout(self.formLayout)
         self.buttonBox.accepted.connect(self.ok)
         self.buttonBox.accepted.connect(self.cancle)
@@ -106,7 +111,6 @@ class GUIEditStudent(QDialog):
     def ok(self):
         self.algo.main_system.students[self.student._id].first_name = self.lineEdit.text()
         self.algo.main_system.students[self.student._id].last_name = self.lineEdit_2.text()
-        #self.algo.main_system.students[self.student._id]._id = self.lineEdit_3.text()
         self.algo.main_system.students[self.student._id].phone_number = self.lineEdit_4.text()
         self.algo.main_system.students[self.student._id].grade = self.lineEdit_5.text()
         self.algo.main_system.students[self.student._id].gender = self.lineEdit_6.text()
@@ -118,3 +122,33 @@ class GUIEditStudent(QDialog):
     @pyqtSlot()
     def cancle(self):
         self.close()
+
+    @pyqtSlot()
+    def delete_employee(self):
+        self.msg = QDialog()
+        buttonBox = QDialogButtonBox()
+        buttonBox.setOrientation(Qt.Horizontal)
+        buttonBox.setStandardButtons(QDialogButtonBox.Cancel | QDialogButtonBox.Ok)
+        buttonBox.accepted.connect(self.delete)
+        buttonBox.rejected.connect(self.close_dialog)
+        label = QLabel()
+        label.setText("האם אתה בטוח שאתה רוצה למחוק?")
+        layout = QVBoxLayout()
+        layout.addWidget(label)
+        layout.addWidget(buttonBox)
+        self.msg.setLayout(layout)
+        x = self.msg.exec_()
+
+    @pyqtSlot()
+    def delete(self):
+        for event in self.algo.main_system.EVENT:
+            if self.student in self.algo.main_system.EVENT[event].arrival_confirmation[0]:
+                x = []
+                self.algo.main_system.EVENT[event].remove_participants(self.student)
+        self.algo.main_system.students.pop(self.student._id)
+        self.msg.close()
+        self.close()
+
+    @pyqtSlot()
+    def close_dialog(self):
+        self.msg.close()

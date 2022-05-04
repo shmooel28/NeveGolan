@@ -2,10 +2,12 @@ import sys
 from datetime import date
 
 from PyQt5.QtWidgets import QApplication, QWidget, QPushButton, QLabel, QInputDialog, QLineEdit, QVBoxLayout, \
-    QMessageBox, QTableWidget, QScrollBar, QTableWidgetItem, QCalendarWidget, QTextEdit, QHBoxLayout
+    QMessageBox, QTableWidget, QScrollBar, QTableWidgetItem, QCalendarWidget, QTextEdit, QHBoxLayout, QDialog, \
+    QDialogButtonBox
 from PyQt5.QtGui import QIcon, QPixmap
 from PyQt5.QtCore import pyqtSlot, Qt, QPoint
 
+from GUICalendar import GUICalendar
 from GUIEvent import GUIEvent
 from GUIStudent import GUIStudent
 from GUIEmployee import GUIEmployee
@@ -109,8 +111,9 @@ class App(QWidget):
         button10.setStyleSheet(u"background-color:rgb(255, 243, 231);\ncolor:black;\nborder-style:outset;\nborder-width:2px"
                                u";\nborder-radius:10;\nborder-color:black;")
         button10.clicked.connect(self.file)
-
         self.show()
+
+
 
     @pyqtSlot()
     def file(self):
@@ -300,6 +303,64 @@ class App(QWidget):
             temp_Student = Student(first_name, last_name, id, gender, age, grade, phone_number)
             self.algo.main_system.add_student(temp_Student)
 
+    @pyqtSlot()
+    def calander(self):
+        self.new_window = GUICalendar(self.algo)
+        #self.new_window.show()
+        '''self.wind = QWidget()
+        self.wind.resize(850, 450)
+        self.textBox = QTextEdit(self.wind)
+        self.textBox.setGeometry(0, 0, 300, 350)
+        self.textBox.move(500, 0)
+        self.save_button = QPushButton(self.wind)
+        self.save_button.setGeometry(0, 0, 300, 30)
+        self.save_button.move(500, 350)
+        self.save_button.setText("save")
+        self.save_button.setStyleSheet(u"background-color:yellow;\ncolor:blue;\nborder-radius:10")
+        self.layout = QHBoxLayout()
+        self.calander_widget = QCalendarWidget(self.wind)
+        self.calander_widget.setGeometry(0, 0, 500, 350)
+        self.calander_widget.selectionChanged.connect(self.change_date)
+        self.save_button.clicked.connect(self.save_task)
+        self.layout.addWidget(self.calander_widget)
+        self.layout.addWidget(self.textBox)
+        if self.calander_widget.selectedDate().toPyDate().strftime("%d-%m-%Y") in self.algo.main_system.task:
+            self.textBox.setText(
+                self.algo.main_system.task[self.calander_widget.selectedDate().toPyDate().strftime("%d-%m-%Y")])
+        else:
+            self.textBox.setText(" ")
+        for d in self.algo.main_system.task:
+            d = str(d)
+            dat = d.split('-')
+            year = int(dat[2])
+            month = int(dat[1])
+            day = int(dat[0])
+            self.calander_widget.updateCell(date(year, month, day))
+        self.wind.show()'''
+
+    @pyqtSlot()
+    def save_task(self):
+        self.algo.main_system.task[
+            self.calander_widget.selectedDate().toPyDate().strftime("%d-%m-%Y")] = self.textBox.toPlainText()
+
+    @pyqtSlot()
+    def change_date(self):
+        print(self.calander_widget.selectedDate().toPyDate().strftime("%d-%m-%Y"))
+        if self.calander_widget.selectedDate().toPyDate().strftime("%d-%m-%Y") in self.algo.main_system.task:
+            self.textBox.setText(
+                self.algo.main_system.task[self.calander_widget.selectedDate().toPyDate().strftime("%d-%m-%Y")])
+        else:
+            self.textBox.setText(" ")
+
+    @pyqtSlot()
+    def up_grade(self):
+        self.algo.up_grade()
+        self.msg.close()
+
+    @pyqtSlot()
+    def close_dialog(self):
+        self.msg.close()
+
     def get_speciality(self):
         text, okPressed = QInputDialog.getText(self, "מקצוע", "הכנס מקצוע:", QLineEdit.Normal, "")
         if okPressed and text != '':
@@ -378,61 +439,11 @@ class App(QWidget):
         else:
             return None
 
-    @pyqtSlot()
-    def calander(self):
-        self.wind = QWidget()
-        self.wind.resize(850, 450)
-        self.textBox = QTextEdit(self.wind)
-        self.textBox.setGeometry(0, 0, 300, 350)
-        self.textBox.move(500, 0)
-        self.save_button = QPushButton(self.wind)
-        self.save_button.setGeometry(0, 0, 300, 30)
-        self.save_button.move(500, 350)
-        self.save_button.setText("save")
-        self.save_button.setStyleSheet(u"background-color:yellow;\ncolor:blue;\nborder-radius:10")
-        self.layout = QHBoxLayout()
-        self.calander_widget = QCalendarWidget(self.wind)
-        self.calander_widget.setGeometry(0, 0, 500, 350)
-        self.calander_widget.selectionChanged.connect(self.change_date)
-        self.save_button.clicked.connect(self.save_task)
-        self.layout.addWidget(self.calander_widget)
-        self.layout.addWidget(self.textBox)
-        if self.calander_widget.selectedDate().toPyDate().strftime("%d-%m-%Y") in self.algo.main_system.task:
-            self.textBox.setText(
-                self.algo.main_system.task[self.calander_widget.selectedDate().toPyDate().strftime("%d-%m-%Y")])
-        else:
-            self.textBox.setText(" ")
-        for d in self.algo.main_system.task:
-            d = str(d)
-            dat = d.split('-')
-            year = int(dat[2])
-            month = int(dat[1])
-            day = int(dat[0])
-            self.calander_widget.updateCell(date(year,month,day))
-        self.wind.show()
-
-    @pyqtSlot()
-    def save_task(self):
-        self.algo.main_system.task[
-            self.calander_widget.selectedDate().toPyDate().strftime("%d-%m-%Y")] = self.textBox.toPlainText()
-
-
-
-    @pyqtSlot()
-    def change_date(self):
-        print(self.calander_widget.selectedDate().toPyDate().strftime("%d-%m-%Y"))
-        if self.calander_widget.selectedDate().toPyDate().strftime("%d-%m-%Y") in self.algo.main_system.task:
-            self.textBox.setText(
-                self.algo.main_system.task[self.calander_widget.selectedDate().toPyDate().strftime("%d-%m-%Y")])
-        else:
-            self.textBox.setText(" ")
-
     def error(self):
         msg = QMessageBox()
         msg.setIcon(QMessageBox.Critical)
         msg.setText('ERROR- enter number only')
         x = msg.exec_()
-
 
 if __name__ == '__main__':
     first_try = Algo()

@@ -6,8 +6,11 @@ from GUIShowTempStudent import GUIShowTempStudent
 
 
 class GUIFilterStudent(QDialog):
-    def __init__(self,algo):
+    def __init__(self,algo,event_name = None):
         super().__init__()
+        self.event_name = None
+        if event_name:
+            self.event_name = event_name
         self.from_age = 0
         self.to_age = 100
         self.from_grade = 'א'
@@ -18,6 +21,7 @@ class GUIFilterStudent(QDialog):
         self.title = "סינון"
         self.okey = False
         self.algo = algo
+        self.temp_student_list = {}
         self.initUI()
 
     def initUI(self):
@@ -81,16 +85,22 @@ class GUIFilterStudent(QDialog):
         if self.checkBox_3.isChecked():
             self.from_grade = self.lineEdit.text()
             self.to_grade = self.lineEdit_2.text()
-        count,temp_student_list = self.algo.filter_student(self.from_age,self.to_age,self.from_grade,self.to_grade,self.gender_flag,self.gender)
+        count,self.temp_student_list = self.algo.filter_student(self.from_age,self.to_age,self.from_grade,self.to_grade,self.gender_flag,self.gender)
         if count == 0:
             msg = QMessageBox()
             msg.setIcon(QMessageBox.Critical)
             msg.setText('ERROR- cannot find any students')
             x = msg.exec_()
         else:
+            if self.event_name:
+                for student in self.temp_student_list.values():
+                    self.algo.main_system.EVENT[self.event_name].add_participants(student)
             self.close()
-            self.new_window = GUIShowTempStudent(self.algo,temp_student_list,count)
+            self.new_window = GUIShowTempStudent(self.algo,self.temp_student_list,count)
             self.new_window.show()
     @pyqtSlot()
     def cancle(self):
         self.close()
+
+    def get_students(self):
+        return self.temp_student_list

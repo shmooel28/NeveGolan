@@ -21,8 +21,10 @@ class Event:
         self.count_employee+=1
 
     def remove_participants(self,student):
-        if student in self.arrival_confirmation:
-            self.arrival_confirmation.remove(student)
+        if student in self.arrival_confirmation[0]:
+            for i in self.arrival_confirmation:
+                if i[0] == student:
+                    self.arrival_confirmation.remove(i)
             self.count_student -= 1
 
     def remove_employee(self,employee):

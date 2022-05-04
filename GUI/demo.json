@@ -11,6 +11,18 @@
             "experience": 0,
             "salary": 0.0,
             "days": ""
+        },
+        {
+            "id": 6546465465,
+            "gender": "\u05d6",
+            "last_name": "\u05de\u05d5\u05d6\u05e1",
+            "age": 32,
+            "phone_number": "04546454",
+            "first_name": "\u05d0\u05dc\u05e2\u05d3",
+            "speciality": "\u05de\u05d5\u05d6\u05d9\u05e7\u05d4",
+            "experience": 0,
+            "salary": 0.0,
+            "days": ""
         }
     ],
     "Students": [
@@ -21,7 +33,7 @@
             "age": 28,
             "phone_number": "05845643432",
             "first_name": "\u05d9\u05d5\u05e1\u05d9",
-            "grade": "\u05d7",
+            "grade": "\u05d8",
             "classes": []
         },
         {
@@ -31,7 +43,7 @@
             "age": 2,
             "phone_number": "0565465464",
             "first_name": "\u05e1\u05d9\u05e0\u05d9",
-            "grade": "\u05d0",
+            "grade": "\u05d1",
             "classes": []
         }
     ],
@@ -53,7 +65,16 @@
                     "arrival_confirmation": "\u05dc\u05d0 \u05d0\u05d9\u05e9\u05e8 \u05d4\u05d2\u05e2\u05d4"
                 }
             ],
-            "employee": [],
+            "employee": [
+                {
+                    "first name": "\u05e9\u05de\u05d5\u05d0\u05dc",
+                    "last name": "\u05d1\u05df \u05d3\u05d5\u05d3"
+                },
+                {
+                    "first name": "\u05d0\u05dc\u05e2\u05d3",
+                    "last name": "\u05de\u05d5\u05d6\u05e1"
+                }
+            ],
             "comment": "",
             "equipment_list": "\u05e8\u05de\u05e7\u05d5\u05dc\u05d9\u05dd"
         },
@@ -62,13 +83,29 @@
             "year": 2022,
             "month": 5,
             "day": 28,
-            "participants": [],
+            "participants": [
+                {
+                    "first name": "\u05e1\u05d9\u05e0\u05d9",
+                    "last name": "\u05d7\u05d9\u05d9\u05dd",
+                    "arrival_confirmation": "\u05dc\u05d0 \u05d0\u05d9\u05e9\u05e8 \u05d4\u05d2\u05e2\u05d4"
+                }
+            ],
             "employee": [
                 {
                     "first name": "\u05e9\u05de\u05d5\u05d0\u05dc",
                     "last name": "\u05d1\u05df \u05d3\u05d5\u05d3"
                 }
             ],
+            "comment": "",
+            "equipment_list": ""
+        },
+        {
+            "event name": "\u05d9\u05d5\u05dd \u05d4\u05e2\u05e6\u05de\u05d0\u05d5\u05ea",
+            "year": 2022,
+            "month": 5,
+            "day": 5,
+            "participants": [],
+            "employee": [],
             "comment": "",
             "equipment_list": ""
         }
@@ -92,9 +129,11 @@
         ]
     ],
     "Task": {
-        "03-05-2022": "bklbk",
+        "03-05-2022": "",
         "04-05-2022": " \u05d9\u05d5\u05dd \u05d4\u05d6\u05d9\u05db\u05e8\u05d5\u05df",
-        "05-05-2022": " \u05d9\u05d5\u05dd \u05d4\u05e2\u05e6\u05de\u05d0\u05d5\u05ea",
-        "28-05-2022": "\u05d9\u05d5\u05dd \u05d9\u05e8\u05d5\u05e9\u05dc\u05d9\u05dd"
+        "05-05-2022": "\u05d9\u05d5\u05dd \u05d4\u05e2\u05e6\u05de\u05d0\u05d5\u05ea",
+        "28-05-2022": "\u05d9\u05d5\u05dd \u05d9\u05e8\u05d5\u05e9\u05dc\u05d9\u05dd",
+        "15-06-2022": "\u05e4\u05e1\u05d7",
+        "10-05-2022": " \u05d9\u05d5\u05dd \u05e9\u05dc\u05d9\u05e9\u05d9\n\u05d1\u05e9\u05e2\u05d4 18:00\n\u05e9\u05de\u05d5\u05d0\u05dc \u05de\u05d2\u05d9\u05e2"
     }
 }

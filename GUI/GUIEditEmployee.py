@@ -157,14 +157,13 @@ class GUIEditEmployee(QDialog):
         layout.addWidget(buttonBox)
         self.msg.setLayout(layout)
         x = self.msg.exec_()
-        print("employee deleted")
 
     @pyqtSlot()
     def delete(self):
         for event in self.algo.main_system.EVENT:
             if self.employee in self.algo.main_system.EVENT[event].employee:
-                x = []
-                self.algo.main_system.EVENT[event].employee.remove(self.employee)
+
+                self.algo.main_system.EVENT[event].remove_employee(self.employee)
         self.algo.main_system.employees.pop(self.employee._id)
         self.msg.close()
         self.close()
