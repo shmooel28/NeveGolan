@@ -43,36 +43,57 @@ class GUI_Menu(QWidget):
         button.setGeometry(40, 40, 200, 200)
         button.move(100, 170)
         button.clicked.connect(self.back)
+        button.setStyleSheet(
+            u"background-color:rgb(255, 243, 231);\ncolor:black;\nborder-style:outset;\nborder-width:2px"
+            u";\nborder-radius:10;\nborder-color:black;")
 
         button1 = QPushButton('חיפוש חניך', self)
         button1.setGeometry(40, 40, 200, 200)
         button1.move(300, 170)
         button1.clicked.connect(self.search_student)
+        button1.setStyleSheet(
+            u"background-color:rgb(255, 243, 231);\ncolor:black;\nborder-style:outset;\nborder-width:2px"
+            u";\nborder-radius:10;\nborder-color:black;")
 
         button2 = QPushButton('חיפוש איש צוות', self)
         button2.setGeometry(40, 40, 200, 200)
         button2.move(500, 170)
         button2.clicked.connect(self.search_employee)
+        button2.setStyleSheet(
+            u"background-color:rgb(255, 243, 231);\ncolor:black;\nborder-style:outset;\nborder-width:2px"
+            u";\nborder-radius:10;\nborder-color:black;")
 
         button3 = QPushButton('סינון', self)
         button3.setGeometry(40, 40, 200, 200)
         button3.move(100, 370)
         button3.clicked.connect(self.filtering)
+        button3.setStyleSheet(
+            u"background-color:rgb(255, 243, 231);\ncolor:black;\nborder-style:outset;\nborder-width:2px"
+            u";\nborder-radius:10;\nborder-color:black;")
 
         button4 = QPushButton('ערוך סטודנט', self)
         button4.setGeometry(40, 40, 200, 200)
         button4.move(300, 370)
         button4.clicked.connect(self.edit_student)
+        button4.setStyleSheet(
+            u"background-color:rgb(255, 243, 231);\ncolor:black;\nborder-style:outset;\nborder-width:2px"
+            u";\nborder-radius:10;\nborder-color:black;")
 
         button5 = QPushButton('ערוך איש צוות', self)
         button5.setGeometry(40, 40, 200, 200)
         button5.move(500, 370)
         button5.clicked.connect(self.edit_employee)
+        button5.setStyleSheet(
+            u"background-color:rgb(255, 243, 231);\ncolor:black;\nborder-style:outset;\nborder-width:2px"
+            u";\nborder-radius:10;\nborder-color:black;")
 
         button6 = QPushButton('ערוך אירוע', self)
         button6.setGeometry(40, 40, 200, 200)
         button6.move(300, 570)
         button6.clicked.connect(self.edit_event)
+        button6.setStyleSheet(
+            u"background-color:rgb(255, 243, 231);\ncolor:black;\nborder-style:outset;\nborder-width:2px"
+            u";\nborder-radius:10;\nborder-color:black;")
 
     @pyqtSlot()
     def edit_event(self):

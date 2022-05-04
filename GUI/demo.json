@@ -56,6 +56,21 @@
             "employee": [],
             "comment": "",
             "equipment_list": "\u05e8\u05de\u05e7\u05d5\u05dc\u05d9\u05dd"
+        },
+        {
+            "event name": "\u05d9\u05d5\u05dd \u05d9\u05e8\u05d5\u05e9\u05dc\u05d9\u05dd",
+            "year": 2022,
+            "month": 5,
+            "day": 28,
+            "participants": [],
+            "employee": [
+                {
+                    "first name": "\u05e9\u05de\u05d5\u05d0\u05dc",
+                    "last name": "\u05d1\u05df \u05d3\u05d5\u05d3"
+                }
+            ],
+            "comment": "",
+            "equipment_list": ""
         }
     ],
     "LINK": [
@@ -75,5 +90,11 @@
             "C:/Users/shmuel/PycharmProjects/Check ID/ds.txt",
             "ds.txt"
         ]
-    ]
+    ],
+    "Task": {
+        "03-05-2022": "bklbk",
+        "04-05-2022": " \u05d9\u05d5\u05dd \u05d4\u05d6\u05d9\u05db\u05e8\u05d5\u05df",
+        "05-05-2022": " \u05d9\u05d5\u05dd \u05d4\u05e2\u05e6\u05de\u05d0\u05d5\u05ea",
+        "28-05-2022": "\u05d9\u05d5\u05dd \u05d9\u05e8\u05d5\u05e9\u05dc\u05d9\u05dd"
+    }
 }

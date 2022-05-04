@@ -1,5 +1,5 @@
 from PyQt5.QtCore import pyqtSlot, Qt
-from PyQt5.QtWidgets import QDialog, QLineEdit, QDialogButtonBox
+from PyQt5.QtWidgets import QDialog, QLineEdit, QDialogButtonBox, QPushButton, QMessageBox, QVBoxLayout
 from PyQt5.QtWidgets import QDialog, QFormLayout, QLabel
 
 class GUIEditEmployee(QDialog):
@@ -112,7 +112,13 @@ class GUIEditEmployee(QDialog):
         self.buttonBox.setOrientation(Qt.Horizontal)
         self.buttonBox.setStandardButtons(QDialogButtonBox.Cancel | QDialogButtonBox.Ok)
 
+        button = QPushButton('מחק עובד', self)
+        button.setGeometry(20, 20, 50, 50)
+        button.clicked.connect(self.delete_employee)
+
+        self.formLayout.setWidget(10, QFormLayout.FieldRole, button)
         self.formLayout.setWidget(10,QFormLayout.LabelRole,self.buttonBox)
+
         self.setLayout(self.formLayout)
         self.buttonBox.accepted.connect(self.ok)
         self.buttonBox.rejected.connect(self.cancle)
@@ -135,3 +141,34 @@ class GUIEditEmployee(QDialog):
     @pyqtSlot()
     def cancle(self):
         self.close()
+
+    @pyqtSlot()
+    def delete_employee(self):
+        self.msg = QDialog()
+        buttonBox = QDialogButtonBox()
+        buttonBox.setOrientation(Qt.Horizontal)
+        buttonBox.setStandardButtons(QDialogButtonBox.Cancel | QDialogButtonBox.Ok)
+        buttonBox.accepted.connect(self.delete)
+        buttonBox.rejected.connect(self.close_dialog)
+        label = QLabel()
+        label.setText("האם אתה בטוח שאתה רוצה למחוק?")
+        layout = QVBoxLayout()
+        layout.addWidget(label)
+        layout.addWidget(buttonBox)
+        self.msg.setLayout(layout)
+        x = self.msg.exec_()
+        print("employee deleted")
+
+    @pyqtSlot()
+    def delete(self):
+        for event in self.algo.main_system.EVENT:
+            if self.employee in self.algo.main_system.EVENT[event].employee:
+                x = []
+                self.algo.main_system.EVENT[event].employee.remove(self.employee)
+        self.algo.main_system.employees.pop(self.employee._id)
+        self.msg.close()
+        self.close()
+
+    @pyqtSlot()
+    def close_dialog(self):
+        self.msg.close()

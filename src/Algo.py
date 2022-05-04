@@ -53,8 +53,8 @@ class Algo:
                 for p in temp.arrival_confirmation:
                     parti.append({"first name":p[0].first_name, "last name":p[0].last_name,"arrival_confirmation":str(p[1])})
                 em = []
-                for em in temp.employee:
-                    em.append({"first name":em.first_name, "last name":em.last_name})
+                for emp in temp.employee:
+                    em.append({"first name":emp.first_name, "last name":emp.last_name})
                 if "EVENTS" in dict_json:
                     dict_json["EVENTS"].append(
                         {"event name": temp.event_name, "year": temp.date.year, "month": temp.date.month,
@@ -68,8 +68,8 @@ class Algo:
                         parti.append({"first name": p[0].first_name, "last name": p[0].last_name,
                                       "arrival_confirmation": str(p[1])})
                     em = []
-                    for em in temp.employee:
-                        em.append({"first name": em.first_name, "last name": em.last_name})
+                    for emp in temp.employee:
+                        em.append({"first name": emp.first_name, "last name": emp.last_name})
                     dict_json["EVENTS"] = [
                         {"event name": temp.event_name, "year": temp.date.year, "month": temp.date.month,
                          "day": temp.date.day, "participants": parti,
@@ -77,6 +77,7 @@ class Algo:
                          "comment": temp.comment,
                          "equipment_list": temp.equipment_list}]
             dict_json["LINK"] = self.main_system.link
+            dict_json["Task"] = self.main_system.task
             with open(file_name, "w") as out:
                 json.dump(dict_json, out, indent=4)
             return True
@@ -153,6 +154,7 @@ class Algo:
                     temp_event.count_student = count_p
                     self.main_system.add_event(temp_event)
                 self.main_system.link = j["LINK"]
+                self.main_system.task = j["Task"]
             return True
         except:
             return False

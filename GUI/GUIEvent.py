@@ -32,13 +32,16 @@ class GUIEvent(QDialog):
         self.formLayout.setWidget(1, QFormLayout.FieldRole, self.label_2)
         self.formLayout.setWidget(1, QFormLayout.LabelRole, self.label_2_2)
 
-        '''self.label_3 = QLabel()
+        self.label_3 = QLabel()
         self.label_3.setText("אנשי צוות")
         self.label_3_3 = QLabel()
-        self.label_3_3.setText(self.event.employee)
+        names2 = ''
+        for e in self.event.employee:
+            names2 += e.first_name + ' ' + e.last_name + '\n'
+        self.label_3_3.setText(names2)
 
         self.formLayout.setWidget(2, QFormLayout.FieldRole, self.label_3)
-        self.formLayout.setWidget(2, QFormLayout.LabelRole, self.label_3_3)'''
+        self.formLayout.setWidget(2, QFormLayout.LabelRole, self.label_3_3)
 
         self.label_4 = QLabel()
         self.label_4.setText("אישורי הגעה")

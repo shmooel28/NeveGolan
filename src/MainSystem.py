@@ -12,6 +12,7 @@ class MainSystem:
         self.count_employee = 0
         self.count_event = 0
         self.link = []
+        self.task = {}
 
     def add_event(self, event: Event):
         self.EVENT[event.event_name] = event

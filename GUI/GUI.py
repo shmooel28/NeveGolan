@@ -1,16 +1,17 @@
 import sys
-from datetime import datetime, date
+from datetime import date
 
 from PyQt5.QtWidgets import QApplication, QWidget, QPushButton, QLabel, QInputDialog, QLineEdit, QVBoxLayout, \
-    QMessageBox, QTableWidget, QMenuBar, QMenu, QScrollBar, QTableWidgetItem, QCalendarWidget, QTextEdit, QHBoxLayout
+    QMessageBox, QTableWidget, QScrollBar, QTableWidgetItem, QCalendarWidget, QTextEdit, QHBoxLayout
 from PyQt5.QtGui import QIcon, QPixmap
-from PyQt5.QtCore import pyqtSlot
+from PyQt5.QtCore import pyqtSlot, Qt, QPoint
 
-from GUIFile import GUIFile
 from GUIEvent import GUIEvent
 from GUIStudent import GUIStudent
 from GUIEmployee import GUIEmployee
 from GUI_Menu import GUI_Menu
+from GUIFile import GUIFile
+
 from src.Algo import Algo
 from src.Employee import Employee
 from src.Event import Event
@@ -42,51 +43,71 @@ class App(QWidget):
         button1 = QPushButton('רשימת אנשי צוות', self)
         button1.setGeometry(40, 40, 200, 200)
         button1.move(100, 170)
+        button1.setStyleSheet(u"background-color:rgb(255, 243, 231);\ncolor:black;\nborder-style:outset;\nborder-width:2px"
+                              u";\nborder-radius:10;\nborder-color:black;")
         button1.clicked.connect(self.show_employee)
 
         button2 = QPushButton('רשימת חניכים', self)
         button2.setGeometry(40, 40, 200, 200)
         button2.move(300, 170)
+        button2.setStyleSheet(u"background-color:rgb(255, 243, 231);\ncolor:black;\nborder-style:outset;\nborder-width:2px"
+                              u";\nborder-radius:10;\nborder-color:black;")
         button2.clicked.connect(self.show_student)
 
         button3 = QPushButton('הוסף חניך', self)
         button3.setGeometry(40, 40, 200, 200)
         button3.move(500, 170)
+        button3.setStyleSheet(u"background-color:rgb(255, 243, 231);\ncolor:black;\nborder-style:outset;\nborder-width:2px"
+                              u";\nborder-radius:10;\nborder-color:black;")
         button3.clicked.connect(self.add_student)
 
         button4 = QPushButton('save', self)
         button4.setGeometry(40, 40, 200, 200)
         button4.move(100, 370)
+        button4.setStyleSheet(u"background-color:rgb(255, 243, 231);\ncolor:black;\nborder-style:outset;\nborder-width:2px"
+                              u";\nborder-radius:10;\nborder-color:black;")
         button4.clicked.connect(self.save)
 
         button5 = QPushButton('הוסף איש צוות', self)
         button5.setGeometry(40, 40, 200, 200)
         button5.move(500, 370)
+        button5.setStyleSheet(u"background-color:rgb(255, 243, 231);\ncolor:black;\nborder-style:outset;\nborder-width:2px"
+                              u";\nborder-radius:10;\nborder-color:black;")
         button5.clicked.connect(self.add_employee)
 
         button6 = QPushButton('תפריט', self)
         button6.setGeometry(40, 40, 200, 200)
         button6.move(300, 370)
+        button6.setStyleSheet(u"background-color:rgb(255, 243, 231);\ncolor:black;\nborder-style:outset;\nborder-width:2px"
+                              u";\nborder-radius:10;\nborder-color:black;")
         button6.clicked.connect(self.menu)
 
         button7 = QPushButton('אירועים', self)
         button7.setGeometry(40, 40, 200, 200)
         button7.move(300, 570)
+        button7.setStyleSheet(u"background-color:rgb(255, 243, 231);\ncolor:black;\nborder-style:outset;\nborder-width:2px"
+                              u";\nborder-radius:10;\nborder-color:black;")
         button7.clicked.connect(self.show_event)
 
         button8 = QPushButton('הוסף אירוע', self)
         button8.setGeometry(40, 40, 200, 200)
         button8.move(500, 570)
+        button8.setStyleSheet(u"background-color:rgb(255, 243, 231);\ncolor:black;\nborder-style:outset;\nborder-width:2px"
+                              u";\nborder-radius:10;\nborder-color:black;")
         button8.clicked.connect(self.add_event)
 
-        button9 = QPushButton('לוח שנה',self)
-        button9.setGeometry(40,40,200,200)
-        button9.move(100,570)
+        button9 = QPushButton('לוח שנה', self)
+        button9.setGeometry(40, 40, 200, 200)
+        button9.move(100, 570)
+        button9.setStyleSheet(u"background-color:rgb(255, 243, 231);\ncolor:black;\nborder-style:outset;\nborder-width:2px"
+                              u";\nborder-radius:10;\nborder-color:black;")
         button9.clicked.connect(self.calander)
 
         button10 = QPushButton('קבצים', self)
         button10.setGeometry(40, 40, 200, 200)
         button10.move(700, 170)
+        button10.setStyleSheet(u"background-color:rgb(255, 243, 231);\ncolor:black;\nborder-style:outset;\nborder-width:2px"
+                               u";\nborder-radius:10;\nborder-color:black;")
         button10.clicked.connect(self.file)
 
         self.show()
@@ -103,6 +124,7 @@ class App(QWidget):
         if date and event_name:
             temp_event = Event(event_name, date)
             self.algo.main_system.add_event(temp_event)
+            self.algo.main_system.task[date.strftime("%d-%m-%Y")] = event_name
 
     @pyqtSlot()
     def show_event(self):
@@ -120,7 +142,8 @@ class App(QWidget):
         count = 1
 
         for e in self.algo.main_system.EVENT:
-            da = str(self.algo.main_system.EVENT[e].date.year) + '-' +str(self.algo.main_system.EVENT[e].date.month) + '-' + str(self.algo.main_system.EVENT[e].date.day)
+            da = str(self.algo.main_system.EVENT[e].date.year) + '-' + str(
+                self.algo.main_system.EVENT[e].date.month) + '-' + str(self.algo.main_system.EVENT[e].date.day)
             self.tableWidget.setItem(count, 0, QTableWidgetItem(str(count)))
             self.tableWidget.setItem(count, 1, QTableWidgetItem(self.algo.main_system.EVENT[e].event_name))
             self.tableWidget.setItem(count, 2, QTableWidgetItem(da))
@@ -255,6 +278,7 @@ class App(QWidget):
         event = self.algo.main_system.EVENT[event_name]
         self.new_window = GUIEvent(event)
         self.new_window.show()
+
     @pyqtSlot()
     def employee_doubleClicked(self):
         first_name = self.tableWidget.currentIndex().siblingAtColumn(1).data()
@@ -338,12 +362,17 @@ class App(QWidget):
     def get_id(self):
         i, okPressed = QInputDialog.getText(self, "ID", "enter id:", QLineEdit.Normal, "")
         if okPressed and i != '':
-            return int(i)
+            try:
+                return int(i)
+            except:
+                self.error()
+                id = self.get_id()
+                return id
         else:
             return None
 
     def get_age(self):
-        i, okPressed = QInputDialog.getInt(self, "age", "enter age:", 28, 0, 100, 1)
+        i, okPressed = QInputDialog.getInt(self, "age", "enter age:", 18, 0, 100, 1)
         if okPressed:
             return i
         else:
@@ -352,26 +381,59 @@ class App(QWidget):
     @pyqtSlot()
     def calander(self):
         self.wind = QWidget()
-        self.wind.resize(850,450)
+        self.wind.resize(850, 450)
         self.textBox = QTextEdit(self.wind)
-        self.textBox.setGeometry(0,0,300,350)
-        self.textBox.move(500,0)
+        self.textBox.setGeometry(0, 0, 300, 350)
+        self.textBox.move(500, 0)
         self.save_button = QPushButton(self.wind)
-        self.save_button.setGeometry(0,0,300,30)
-        self.save_button.move(500,350)
+        self.save_button.setGeometry(0, 0, 300, 30)
+        self.save_button.move(500, 350)
         self.save_button.setText("save")
+        self.save_button.setStyleSheet(u"background-color:yellow;\ncolor:blue;\nborder-radius:10")
         self.layout = QHBoxLayout()
         self.calander_widget = QCalendarWidget(self.wind)
-        self.calander_widget.setGeometry(0,0,500,350)
+        self.calander_widget.setGeometry(0, 0, 500, 350)
         self.calander_widget.selectionChanged.connect(self.change_date)
+        self.save_button.clicked.connect(self.save_task)
         self.layout.addWidget(self.calander_widget)
         self.layout.addWidget(self.textBox)
-        #self.wind.setLayout(self.layout)
+        if self.calander_widget.selectedDate().toPyDate().strftime("%d-%m-%Y") in self.algo.main_system.task:
+            self.textBox.setText(
+                self.algo.main_system.task[self.calander_widget.selectedDate().toPyDate().strftime("%d-%m-%Y")])
+        else:
+            self.textBox.setText(" ")
+        for d in self.algo.main_system.task:
+            d = str(d)
+            dat = d.split('-')
+            year = int(dat[2])
+            month = int(dat[1])
+            day = int(dat[0])
+            self.calander_widget.updateCell(date(year,month,day))
         self.wind.show()
+
+    @pyqtSlot()
+    def save_task(self):
+        self.algo.main_system.task[
+            self.calander_widget.selectedDate().toPyDate().strftime("%d-%m-%Y")] = self.textBox.toPlainText()
+
+
 
     @pyqtSlot()
     def change_date(self):
         print(self.calander_widget.selectedDate().toPyDate().strftime("%d-%m-%Y"))
+        if self.calander_widget.selectedDate().toPyDate().strftime("%d-%m-%Y") in self.algo.main_system.task:
+            self.textBox.setText(
+                self.algo.main_system.task[self.calander_widget.selectedDate().toPyDate().strftime("%d-%m-%Y")])
+        else:
+            self.textBox.setText(" ")
+
+    def error(self):
+        msg = QMessageBox()
+        msg.setIcon(QMessageBox.Critical)
+        msg.setText('ERROR- enter number only')
+        x = msg.exec_()
+
+
 if __name__ == '__main__':
     first_try = Algo()
     first_try.load_from_json("demo.json")

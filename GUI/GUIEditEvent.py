@@ -20,7 +20,7 @@ class GUIEditEvent(QWidget):
         self.setWindowTitle(self.title)
         self.setGeometry(self.left, self.top, self.width, self.height)
         label = QLabel(self)
-        pixmap = QPixmap('background.jpg')
+        pixmap = QPixmap('background1.jpg')
         label.setPixmap(pixmap)
         self.resize(pixmap.width(), pixmap.height())
         self.setFixedSize(self.width, self.height)
@@ -28,28 +28,43 @@ class GUIEditEvent(QWidget):
 
         button1 = QPushButton('חזרה', self)
         button1.setGeometry(40, 40, 200, 200)
-        button1.move(100, 70)
+        button1.move(100, 170)
         button1.clicked.connect(self.back)
+        button1.setStyleSheet(
+            u"background-color:rgb(255, 243, 231);\ncolor:black;\nborder-style:outset;\nborder-width:2px"
+            u";\nborder-radius:10;\nborder-color:black;")
 
         button2 = QPushButton('הוסף משתתף', self)
         button2.setGeometry(40, 40, 200, 200)
-        button2.move(400, 70)
+        button2.move(300, 170)
         button2.clicked.connect(self.add_participants)
+        button2.setStyleSheet(
+            u"background-color:rgb(255, 243, 231);\ncolor:black;\nborder-style:outset;\nborder-width:2px"
+            u";\nborder-radius:10;\nborder-color:black;")
 
         button3 = QPushButton('ערוך אישורי הגעה', self)
         button3.setGeometry(40, 40, 200, 200)
-        button3.move(700, 70)
+        button3.move(500, 170)
         button3.clicked.connect(self.edit_arrival_confirmation)
+        button3.setStyleSheet(
+            u"background-color:rgb(255, 243, 231);\ncolor:black;\nborder-style:outset;\nborder-width:2px"
+            u";\nborder-radius:10;\nborder-color:black;")
 
         button4 = QPushButton('הוסף הערה', self)
         button4.setGeometry(40, 40, 200, 200)
-        button4.move(100, 300)
+        button4.move(100, 370)
         button4.clicked.connect(self.add_comment)
+        button4.setStyleSheet(
+            u"background-color:rgb(255, 243, 231);\ncolor:black;\nborder-style:outset;\nborder-width:2px"
+            u";\nborder-radius:10;\nborder-color:black;")
 
         button5 = QPushButton('רשימת  ציוד', self)
         button5.setGeometry(40, 40, 200, 200)
-        button5.move(400, 300)
+        button5.move(300, 370)
         button5.clicked.connect(self.equipment_list)
+        button5.setStyleSheet(
+            u"background-color:rgb(255, 243, 231);\ncolor:black;\nborder-style:outset;\nborder-width:2px"
+            u";\nborder-radius:10;\nborder-color:black;")
 
     @pyqtSlot()
     def back(self):
